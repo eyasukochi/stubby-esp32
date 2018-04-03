@@ -1,12 +1,7 @@
-ESP-IDF template app
-====================
+A project to drive 18 servos via two Adafruit 16 Channel PWM boards and an ESP-32. 
+PWM driver lib borrowed from: https://github.com/brainelectronics/esp32-pca9685
+Hexapod body from: http://stubby.digitalcave.ca/stubby/
 
-This is a template application to be used with `Espressif IoT Development Framework`_ (ESP-IDF). 
-
-Please check ESP-IDF docs for getting started instructions.
-
-Code in this repository is Copyright (C) 2016 Espressif Systems, licensed under the Apache License 2.0 as described in the file LICENSE.
-
-.. _Espressif IoT Development Framework: https://github.com/espressif/esp-idf
-
-
+TODO: 
+- incorporate a proper kinematics engine.
+- add bluetooth connectivity for remote control

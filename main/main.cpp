@@ -1,12 +1,3 @@
-/*
- * 1. Open up the project properties
- * 2. Visit C/C++ General > Preprocessor Include Paths, Macros, etc
- * 3. Select the Providers tab
- * 4. Check the box for "CDT GCC Built-in Compiler Settings"
- * 5. Set the compiler spec command to "xtensa-esp32-elf-gcc ${FLAGS} -E -P -v -dD "${INPUTS}""
- * 6. Rebuild the index
-*/
-
 #include <esp_log.h>
 #include <string>
 #include "sdkconfig.h"
@@ -85,9 +76,7 @@ esp_err_t set_any_pwm(uint8_t board, uint8_t num, uint16_t on, uint16_t off)
 void init_zero()
 {
 
-	set_pca9685_adress(I2C_ADDRESS); // TODO do I have to alternate this manually between writes? that's lame as hell, but possibly correct.
-	// Or maybe wrap that lib with some convenience functions that do a set_address + a pwm write, that like interprets the pin number into the correct board and then changes the address.
-	// TODO re-pack startup sequences into functions I can call here with specific addresses
+	set_pca9685_adress(I2C_ADDRESS);
 	resetPCA9685();
 	setFrequencyPCA9685(60);  // 1000 Hz
 	turnAllOff();
@@ -96,9 +85,7 @@ void init_zero()
 void init_one()
 {
 
-	set_pca9685_adress(I2C_ADDRESS_2); // TODO do I have to alternate this manually between writes? that's lame as hell, but possibly correct.
-	// Or maybe wrap that lib with some convenience functions that do a set_address + a pwm write, that like interprets the pin number into the correct board and then changes the address.
-	// TODO re-pack startup sequences into functions I can call here with specific addresses
+	set_pca9685_adress(I2C_ADDRESS_2);
 	resetPCA9685();
 	setFrequencyPCA9685(60);  // 1000 Hz
 	turnAllOff();
