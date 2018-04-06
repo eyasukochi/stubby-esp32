@@ -101,6 +101,8 @@ void task_PCA9685(void *ignore)
 
     printf("Finished setup, entering loop now\n");
 
+    int legs_one[3] = {};
+
     while(1)
     {
         printf("Now attempting test\n");
@@ -111,24 +113,56 @@ void task_PCA9685(void *ignore)
 
         // lowers: FIRST:  2, 10, 14, SECOND: 2, 10, 14
 
-		uint16_t index;//, count;
-		for (index = 150; index <= 500 ; index += 1) {
+//		uint16_t index;//, count;
+//		uint16_t index_2 = 550;
 
-			set_any_pwm(0, 2, 0, index);
-			set_any_pwm(0, 10, 0, index);
-			set_any_pwm(0, 14, 0, index);
-			set_any_pwm(1, 2, 0, index);
-			set_any_pwm(1, 10, 0, index);
-			set_any_pwm(1, 14, 0, index);
+//		for (index = 150; index <= 550 ; index += 50) {
+//			set_any_pwm(0, 2, 0, index);
+//			set_any_pwm(0, 1, 0, index_2);
+//			index_2 -= 50;
+//			vTaskDelay(100);
+//		}
 
-			vTaskDelay(5);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
-		}
+
+		// DOWN
+		set_any_pwm(0, 2, 0, 150); // lower
+		set_any_pwm(0, 10, 0, 150); // lower
+		set_any_pwm(0, 14, 0, 150); // lower
+		set_any_pwm(1, 2, 0, 150); // lower
+		set_any_pwm(1, 10, 0, 150); // lower
+		set_any_pwm(1, 14, 0, 150); // lower
+		set_any_pwm(0, 1, 0, 550); // mid
+		set_any_pwm(0, 9, 0, 550); // mid
+		set_any_pwm(0, 13, 0, 550); // mid
+		set_any_pwm(1, 1, 0, 550); // mid
+		set_any_pwm(1, 9, 0, 550); // mid
+		set_any_pwm(1, 13, 0, 550); // mid
+
+		vTaskDelay(1000);
+
+		// UP
+		set_any_pwm(0, 2, 0, 540); // lower
+		set_any_pwm(0, 10, 0, 540); // lower
+		set_any_pwm(0, 14, 0, 540); // lower
+		set_any_pwm(1, 2, 0, 540); // lower
+		set_any_pwm(1, 10, 0, 540); // lower
+		set_any_pwm(1, 14, 0, 540); // lower
+		set_any_pwm(0, 1, 0, 150); // mid
+		set_any_pwm(0, 9, 0, 150); // mid
+		set_any_pwm(0, 13, 0, 150); // mid
+		set_any_pwm(1, 1, 0, 150); // mid
+		set_any_pwm(1, 9, 0, 150); // mid
+		set_any_pwm(1, 13, 0, 150); // mid
 
         vTaskDelay(1000 / portTICK_RATE_MS);
 
     }
 
     vTaskDelete(NULL);
+}
+
+void smooth_leg_down() {
+
 }
 
 void app_main(void)
